@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const db = require('./db/index.js');
+const path = require('path');
 
 const router = require('./routes/index')
 
@@ -8,20 +10,25 @@ const app = express()
 
 const port = process.env.PORT || 3001
 
+// Public path
+const publicPath = path.join(__dirname,'../public');
+// Config static file
+app.use(express.static(publicPath))
 
-mongoose.connect('mongodb://127.0.0.1:27017/quan_li_sinh_vien');
+// Connect db
+db.connect();
 
+// [Middleware]
+app.use(bodyParser.json())
+require('dotenv').config()
+
+// Route welcome!
 app.get('/', (req, res) => {
     res.json('heloo!')
 })
 
-app.use(bodyParser.json())
+// Router
 app.use(router);
-
-
-// endpoint
-
-// router
 
 
 app.listen(port, () => {

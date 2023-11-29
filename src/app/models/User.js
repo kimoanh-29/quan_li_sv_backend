@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const role = require('../../enums/user')
 
 const { Schema } = mongoose;
 
@@ -11,6 +12,7 @@ const userSchema = new Schema({
     },
     role: {
         type: String,
+        enums: Object.values(role),
         default: "USER",
     }
 })
