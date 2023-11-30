@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const db = require('./db/index.js');
 const path = require('path');
+const cors = require('cors')
 
 const router = require('./routes/index')
 
@@ -19,6 +20,7 @@ app.use(express.static(publicPath))
 db.connect();
 
 // [Middleware]
+app.use(cors())
 app.use(bodyParser.json())
 require('dotenv').config()
 

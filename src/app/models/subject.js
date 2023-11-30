@@ -13,7 +13,7 @@ const subjectSchema = new Schema({
     credits: {
         type: Number,
     }
-})
+}, { timestamps: true } )
 
 const Subject = mongoose.model('subjects', subjectSchema);
 

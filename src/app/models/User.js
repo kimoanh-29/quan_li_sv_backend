@@ -10,12 +10,24 @@ const userSchema = new Schema({
     password: {
         type: String,
     },
+    full_name: {
+        type: String,
+    },
+    gender: {
+        type: String,
+    },
+    birth_date: {
+        type: String,
+    },
+    address: {
+        type: String,
+    },
     role: {
         type: String,
         enums: Object.values(role),
         default: "USER",
     }
-})
+} , { timestamps: true } )
 
 const User = mongoose.model('users', userSchema);
 

@@ -1,5 +1,5 @@
 const Component = require('../Components/factory/index')
-const Academic = require('../models/Academic')
+const Academic = require('../models/Academic_Year')
 
 const academic_getOne = Component.getOne(Academic)
 const academic_getAll = Component.getAll(Academic)
