@@ -9,6 +9,7 @@ const login = async (req, res) => {
         const user = await User.findOne({
             username,
         })
+        console.log(user);
         if(!user){
             throw new Error('User not found!')
         }
@@ -17,14 +18,13 @@ const login = async (req, res) => {
         if (!isMatch) {
             throw new Error('Password incorrect!')
         }
-        // const token = jwt.sign(user._id, process.env.JWT_TOKEN);
+        const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_TOKEN);
         console.log(process.env.JWT_TOKEN);
+        console.log(token);
         res.status(200).json({
             user,
             token
         });
-
-        res.status(200).json(user);
     } catch (error) {
         res.status(400).json(error.message);
     }
